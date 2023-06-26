@@ -1,0 +1,27 @@
+{"properties": [
+  {
+    "name": "spring.data.jpa.entity.packages-to-scan",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.data.jpa.entity.packages-to-scan'"
+  },
+  {
+    "name": "spring.data.jpa.repository.packages",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.data.jpa.repository.packages'"
+  },
+  {
+    "name": "security.datasource.jdbc-url",
+    "type": "java.lang.String",
+    "description": "A description for 'security.datasource.jdbc-url'"
+  },
+  {
+    "name": "security.datasource.username",
+    "type": "java.lang.String",
+    "description": "A description for 'security.datasource.username'"
+  },
+  {
+    "name": "security.datasource.password",
+    "type": "java.lang.String",
+    "description": "A description for 'security.datasource.password'"
+  }
+]}

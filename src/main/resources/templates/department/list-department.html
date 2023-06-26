@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+		integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Department Directory</title>
+
+
+</head>
+
+
+<body>
+
+
+	<div class="container">
+
+		<!-- display user name and role(s) -->
+
+
+		<h3>Department Directory</h3>
+		<hr>
+
+		<div>
+
+			<p>
+				User: <span sec:authentication="name"></span>
+				<br>
+				Role: <span sec:authentication="principal.authorities"></span>
+			</p>
+
+		</div>
+
+		<!-- Add a button -->
+		<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/department/showFormForAdd}"
+			class="btn btn-primary btn-sm mb-3">
+
+			Add Department
+
+		</a>
+
+
+
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark ">
+				<tr>
+					<th>Id</th>
+					<th>Name</th>
+					<th sec:authorize="hasRole('ROLE_ADMIN')" class="mb-4 col-4">Action</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="tempDepartment : ${department}">
+
+					<td th:text="${tempDepartment.id}" />
+					<td>
+						<a th:text="${tempDepartment.name}"
+							th:href="@{/user/list(departmentId=${tempDepartment.id})}"></a>
+					</td>
+
+					<td sec:authorize="hasRole('ROLE_ADMIN')">
+						<!-- Add "update" button/link -->
+						<a th:href="@{/department/showFormForUpdate(departmentId=${tempDepartment.id})}"
+							class="btn btn-info btn-sm">
+
+							Update
+						</a>
+
+						<a th:href="@{/department/delete(departmentId=${tempDepartment.id})}"
+							class="btn btn-danger btn-sm"
+							onclick="if (!(confirm('Are you sure you want to delete this Department?'))) return false">
+							<!-- Add "delete" button/link -->
+							Delete
+						</a>
+
+					</td>
+
+
+
+				</tr>
+			</tbody>
+		</table>
+		<a th:href="@{/user/list}"> Back to User list</a>
+
+		<!-- add logout button -->
+		<form action="#" th:action="@{/logout}" method="POST">
+
+			<input type="submit" value="Logout" class="btn btn-outline-primary mt-2" />
+
+		</form>
+
+
+	</div>
+
+</body>
+
+</html>
